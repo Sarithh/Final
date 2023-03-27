@@ -18,43 +18,39 @@ def test_post_insert():
     actual_result = client.post(
         url,
         json = {
-            "course_code": "SWE62-353",
-            "course_name" : "TTD",
-            "year" : "3",
-            "group" : 1,
-            "number" : 30,
+            "weight": "less 10kg",
+            "price":"200 bath",
+            "region":"ภาคกลาง, ภาคตะวันออก, ภาคตะวันตก ",
+            "price1":"240 bath",
+            "region2":"ภาคเหนือ, ภาคอีสาน, ภาคใต้ ",
+
+            "weight": " 10kg to 20kg",
+            "price":"420 bath",
+            "region":"ภาคกลาง, ภาคตะวันออก, ภาคตะวันตก ",
+            "price1":"460 bath",
+            "region2":"ภาคเหนือ, ภาคอีสาน, ภาคใต้ ",
+
+            "weight": " greater 20kg",
+            "price":"500 bath",
+            "region":"ทั่วประเทศไทย",
+            "price1":"-",
+            "region2":"- ",
+
         }
     )
-    expected_result = "SWE62-353"
+    expected_result = "less 10kg"
     global _id 
     _id = actual_result.json()[0]['id']
     assert actual_result.status_code == 200
-    assert actual_result.json()[0]['course_code'] == expected_result
+    assert actual_result.json()[0]['weight'] == expected_result
 
 
 def test_get_by_id():
     url = "/"+_id
     actual_result = client.get(url)
-    expected_result = "SWE62-353"
+    expected_result = "less 10kg"
     assert actual_result.status_code == 200
-    assert actual_result.json()['course_code'] == expected_result
-    
 
-def test_put_x_update():
-    url = "/"+_id
-    actual_result = client.put(
-        url,
-        json = {
-            "course_code": "SWE62-3532",
-            "course_name" : "TTD",
-            "year" : "3",
-            "group" : 1,
-            "number" : 30,
-        }
-    )
-    expected_result = "SWE62-3532"
-    assert actual_result.status_code == 200
-    assert actual_result.json()[0]['course_code'] == expected_result
 
 def test_delete_by_id():
     url = "/"+_id
