@@ -2,8 +2,10 @@ def course_serializer(course) -> dict:
     return {
         "id": str(express["_id"]),
         "weight":express["weight"],
-        "price":express["price"],
-        "region":express["region"]
+        "price1":express["price1"],
+        "region1":express["region1"],
+        "price2":express["price2"],
+        "region2":express["region2"]
     }
 
 def expresses_serializer(expresses) -> list:
